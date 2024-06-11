@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: 'postgres:15.6'
+    environment:
+      - 'POSTGRES_DB=mydatabase'
+      - 'POSTGRES_PASSWORD=secret'
+      - 'POSTGRES_USER=myuser'
+    ports:
+      - '5432:5432'
+
+  app:
+    image: comprehensive-logging:0.0.1-SNAPSHOT
+    depends_on:
+      - postgres
+    ports:
+      - '8080: 8080'
