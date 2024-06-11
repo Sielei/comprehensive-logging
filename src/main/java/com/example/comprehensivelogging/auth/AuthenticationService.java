@@ -30,7 +30,8 @@ class AuthenticationService {
     }
 
     public DTO.LoginResponse login(DTO.LoginRequest loginRequest, HttpServletRequest request) {
-        log.info("Login attempted by user: {} from IP address: {}", loginRequest.username(), request.getRemoteAddr());
+        // replaced by login aspect
+        //log.info("Login attempted by user: {} from IP address: {}", loginRequest.username(), request.getRemoteAddr());
         var userDto = userService.findUserByUsername(loginRequest.username())
                 .orElseThrow(() -> new UserAuthenticationException("Failed to authenticate user! Username or password is incorrect"));
         var authenticationToken = new UsernamePasswordAuthenticationToken(loginRequest.username(),
